@@ -77,20 +77,22 @@ struct ProductDetailsView: View {
                             .padding(.top, 3)
                             .padding([.leading, .trailing], 20)
                         
-                        Text("You may also like")
-                            .font(tenorSans(22))
-                            .foregroundColor(.black)
-                            .padding(.top, 20)
+                        let similarProds = products.filter { $0.category == product.category && $0.title != product.title }
                         
-                        Image("Divider")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 140)
-                            .padding(.top, 10)
+                        if similarProds.count > 0 {
+                            Text("You may also like")
+                                .font(tenorSans(22))
+                                .foregroundColor(.black)
+                                .padding(.top, 20)
+                            
+                            Image("Divider")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 140)
+                                .padding(.top, 10)
+                        }
                         
                         VStack {
-                            
-                            let similarProds = products.filter { $0.category == product.category && $0.title != product.title }
                             
                             ForEach(0..<similarProds.count / 2 + similarProds.count % 2) { index in
                                 let startIndex = index * 2
@@ -103,7 +105,7 @@ struct ProductDetailsView: View {
                             }
                             
                             Button{
-                                
+                                NavigationUtil.popToRootView()
                             }label: {
                                 HStack(alignment: .center, spacing: 8) {
                                     Text("Explore More")
@@ -143,16 +145,16 @@ struct ProductDetailsView: View {
                 )
             }
             
-//            SideCart()
+            SideCart()
         }
         .navigationBarHidden(true)
         .ignoresSafeArea(edges: .bottom)
     }
     
-//    @ViewBuilder
-//    private func SideCart() -> some View {
-//        SideView(isShowing: $presentSideCart, content: AnyView(SideCartViewContents(presentSideMenu: $presentSideCart)), direction: .trailing)
-//    }
+    @ViewBuilder
+    private func SideCart() -> some View {
+        SideView(isShowing: $presentSideCart, content: AnyView(SideCartViewContents(presentSideMenu: $presentSideCart)), direction: .trailing)
+    }
     
 }
 

@@ -74,9 +74,19 @@ struct HomeView: View {
                 }
             }
             
-            //SideMenu()
-            //SideCart()
+            SideMenu()
+            SideCart()
         }
+    }
+    
+    @ViewBuilder
+    private func SideMenu() -> some View {
+        SideView(isShowing: $presentSideMenu, content: AnyView(SideCategoriesViewContents(presentSideMenu: $presentSideMenu, categories: homeObject.categories, genderCategories: homeObject.genderCategories)), direction: .leading)
+    }
+
+    @ViewBuilder
+    private func SideCart() -> some View {
+        SideView(isShowing: $presentSideCart, content: AnyView(SideCartViewContents(presentSideMenu: $presentSideCart)), direction: .trailing)
     }
 }
 

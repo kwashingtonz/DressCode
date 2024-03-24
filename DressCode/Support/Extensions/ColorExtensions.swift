@@ -15,5 +15,13 @@ extension Color {
     static var BodyGrey: Color {
         Color("Body")
     }
+    
+    static var Placeholder: Color {
+        Color("Placeholder")
+    }
+    
+    static var Label: Color {
+        Color("Label")
+    }
 }
 

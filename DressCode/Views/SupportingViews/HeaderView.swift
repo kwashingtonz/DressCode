@@ -76,7 +76,7 @@ struct HeaderView: View {
                             ,   (showCartButton && !showBackButton && !showMenuButton && !showCloseButton)
                                 ||
                                 (!showCartButton && (showBackButton || showMenuButton || showCloseButton))
-                                ? 155
+                                ? 135
                                 : 0
                             )
                 

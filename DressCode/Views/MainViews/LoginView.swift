@@ -25,10 +25,10 @@ struct LoginView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                         }
-                        .frame(width: 30, height: 30)
+                        .frame(width: 34, height: 34)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.leading, 16)
-                        .padding(.top, 10)
+                        .padding(.leading, 30)
+                        .padding(.top, -25)
                     }
                 }
             VStack {
