@@ -11,7 +11,7 @@ import SwiftUI
 struct DressCodeApp: App {
     var body: some Scene {
         WindowGroup {
-            SplashView()
+            ContentView()
         }
     }
 }
