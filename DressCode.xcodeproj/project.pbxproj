@@ -8,17 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		7E5C7D5C2BAFD3F60023C7F6 /* DressCodeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C7D5B2BAFD3F60023C7F6 /* DressCodeApp.swift */; };
-		7E5C7D5E2BAFD3F60023C7F6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C7D5D2BAFD3F60023C7F6 /* ContentView.swift */; };
 		7E5C7D602BAFD3F70023C7F6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E5C7D5F2BAFD3F70023C7F6 /* Assets.xcassets */; };
 		7E5C7D632BAFD3F70023C7F6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E5C7D622BAFD3F70023C7F6 /* Preview Assets.xcassets */; };
+		7E5C7D712BAFD5AB0023C7F6 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C7D702BAFD5AB0023C7F6 /* SplashView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7E5C7D582BAFD3F60023C7F6 /* DressCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DressCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E5C7D5B2BAFD3F60023C7F6 /* DressCodeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DressCodeApp.swift; sourceTree = "<group>"; };
-		7E5C7D5D2BAFD3F60023C7F6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7E5C7D5F2BAFD3F70023C7F6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E5C7D622BAFD3F70023C7F6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7E5C7D702BAFD5AB0023C7F6 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +51,12 @@
 		7E5C7D5A2BAFD3F60023C7F6 /* DressCode */ = {
 			isa = PBXGroup;
 			children = (
+				7E5C7D6F2BAFD47F0023C7F6 /* Support */,
+				7E5C7D6C2BAFD43E0023C7F6 /* Fonts */,
+				7E5C7D6B2BAFD4340023C7F6 /* ViewModels */,
+				7E5C7D6A2BAFD42B0023C7F6 /* Models */,
+				7E5C7D692BAFD41A0023C7F6 /* Views */,
 				7E5C7D5B2BAFD3F60023C7F6 /* DressCodeApp.swift */,
-				7E5C7D5D2BAFD3F60023C7F6 /* ContentView.swift */,
 				7E5C7D5F2BAFD3F70023C7F6 /* Assets.xcassets */,
 				7E5C7D612BAFD3F70023C7F6 /* Preview Content */,
 			);
@@ -65,6 +69,58 @@
 				7E5C7D622BAFD3F70023C7F6 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7E5C7D692BAFD41A0023C7F6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7E5C7D6E2BAFD4670023C7F6 /* SupportingViews */,
+				7E5C7D6D2BAFD45C0023C7F6 /* MainViews */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7E5C7D6A2BAFD42B0023C7F6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7E5C7D6B2BAFD4340023C7F6 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		7E5C7D6C2BAFD43E0023C7F6 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		7E5C7D6D2BAFD45C0023C7F6 /* MainViews */ = {
+			isa = PBXGroup;
+			children = (
+				7E5C7D702BAFD5AB0023C7F6 /* SplashView.swift */,
+			);
+			path = MainViews;
+			sourceTree = "<group>";
+		};
+		7E5C7D6E2BAFD4670023C7F6 /* SupportingViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SupportingViews;
+			sourceTree = "<group>";
+		};
+		7E5C7D6F2BAFD47F0023C7F6 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +193,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E5C7D5E2BAFD3F60023C7F6 /* ContentView.swift in Sources */,
 				7E5C7D5C2BAFD3F60023C7F6 /* DressCodeApp.swift in Sources */,
+				7E5C7D712BAFD5AB0023C7F6 /* SplashView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
