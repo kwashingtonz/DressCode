@@ -31,6 +31,8 @@
 		7E5C7D9D2BB04E6C0023C7F6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C7D9C2BB04E6C0023C7F6 /* HomeViewModel.swift */; };
 		7E5C7D9F2BB04E830023C7F6 /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C7D9E2BB04E830023C7F6 /* ProductsViewModel.swift */; };
 		7E5C7DA12BB04F810023C7F6 /* ProductDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C7DA02BB04F810023C7F6 /* ProductDetailsView.swift */; };
+		7E8C91632BB06988001B8164 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C91622BB06988001B8164 /* LoginView.swift */; };
+		7E8C91652BB075B8001B8164 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C91642BB075B8001B8164 /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		7E5C7D9C2BB04E6C0023C7F6 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		7E5C7D9E2BB04E830023C7F6 /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
 		7E5C7DA02BB04F810023C7F6 /* ProductDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsView.swift; sourceTree = "<group>"; };
+		7E8C91622BB06988001B8164 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7E8C91642BB075B8001B8164 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +144,7 @@
 			children = (
 				7E5C7D9C2BB04E6C0023C7F6 /* HomeViewModel.swift */,
 				7E5C7D9E2BB04E830023C7F6 /* ProductsViewModel.swift */,
+				7E8C91642BB075B8001B8164 /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -159,6 +164,7 @@
 				7E5C7D752BAFDAA30023C7F6 /* ContentView.swift */,
 				7E5C7D772BAFDCF60023C7F6 /* HomeView.swift */,
 				7E5C7DA02BB04F810023C7F6 /* ProductDetailsView.swift */,
+				7E8C91622BB06988001B8164 /* LoginView.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -270,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E8C91652BB075B8001B8164 /* LoginViewModel.swift in Sources */,
 				7E5C7D9D2BB04E6C0023C7F6 /* HomeViewModel.swift in Sources */,
 				7E5C7D5C2BAFD3F60023C7F6 /* DressCodeApp.swift in Sources */,
 				7E5C7D7C2BAFDDBA0023C7F6 /* HeaderView.swift in Sources */,
@@ -278,6 +285,7 @@
 				7E5C7D912BB00AFC0023C7F6 /* HomeDataModel.swift in Sources */,
 				7E5C7D782BAFDCF60023C7F6 /* HomeView.swift in Sources */,
 				7E5C7D7E2BAFDE120023C7F6 /* TypeAliases.swift in Sources */,
+				7E8C91632BB06988001B8164 /* LoginView.swift in Sources */,
 				7E5C7D8B2BB005860023C7F6 /* HomeContentView.swift in Sources */,
 				7E5C7D952BB00C890023C7F6 /* GenderCategoryModel.swift in Sources */,
 				7E5C7D992BB040550023C7F6 /* ProductItemView.swift in Sources */,

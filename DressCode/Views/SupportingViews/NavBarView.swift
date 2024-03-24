@@ -10,6 +10,7 @@ import SwiftUI
 struct NavBarView: View {
     
     @Binding var selectedTab: Tab
+    @Binding var showLogin: Bool
     
     private var activeImg: String {
         selectedTab.rawValue + "_active"
@@ -28,6 +29,10 @@ struct NavBarView: View {
                         .onTapGesture {
                             withAnimation(.easeIn(duration: 0.1)){
                                 selectedTab = tab
+                                
+                                if selectedTab == .profile {
+                                    showLogin = true
+                                }
                             }
                         }
                         Spacer()
@@ -43,5 +48,5 @@ struct NavBarView: View {
 }
 
 #Preview {
-    NavBarView(selectedTab: .constant(.home))
+    NavBarView(selectedTab: .constant(.home), showLogin: .constant(false))
 }

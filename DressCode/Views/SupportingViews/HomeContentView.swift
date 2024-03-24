@@ -10,12 +10,14 @@ import Kingfisher
 
 struct HomeContentView: View {
     
+    @Binding var selectedTab: Tab
+    
     var homeObject : HomeDataModel
     
     var body: some View {
         ScrollView(.vertical) {
-            HeroImageView(imgUrl: homeObject.heroImg)
-            NewArrivalView(products: homeObject.products)
+            HeroImageView(imgUrl: homeObject.heroImg, with: $selectedTab)
+            NewArrivalView(products: homeObject.products, with: $selectedTab)
             Image("Brands")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -27,11 +29,11 @@ struct HomeContentView: View {
 }
 
 #Preview {
-    HomeContentView(homeObject: homeObj)
+    HomeContentView(selectedTab: .constant(.home), homeObject: homeObj)
 }
 
 @ViewBuilder
-private func HeroImageView(imgUrl : String) -> some View {
+private func HeroImageView(imgUrl : String, with binding:Binding<Tab>) -> some View {
 
     let heroImg : String = imgUrl
     
@@ -42,10 +44,8 @@ private func HeroImageView(imgUrl : String) -> some View {
             .frame(maxWidth: .infinity)
             .frame(height: 620)
         
-        
         Button {
-//            print("Explore Collection Button Clicked")
-//                ProductsListView()
+            binding.wrappedValue = .products
         } label: {
             RoundedRectangle(cornerRadius: 30).overlay {
                 Text("Explore Collection")
@@ -62,7 +62,7 @@ private func HeroImageView(imgUrl : String) -> some View {
 }
 
 @ViewBuilder
-private func NewArrivalView(products :[ProductModel]) -> some View {
+private func NewArrivalView(products :[ProductModel], with binding:Binding<Tab>) -> some View {
     
     let trendingProds = products.filter { $0.isTrending }
     
@@ -92,7 +92,7 @@ private func NewArrivalView(products :[ProductModel]) -> some View {
         }
         
         Button {
-            
+            binding.wrappedValue = .products
         } label: {
             HStack(alignment: .center, spacing: 8) {
                 Text("Explore More")

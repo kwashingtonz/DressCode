@@ -10,6 +10,7 @@ import SwiftUI
 struct HomeView: View {
     
     @State private var selectedTab: Tab = .home
+    @State private var showLogin: Bool = false
     
     @State var presentSideMenu: Bool = false
     @State var presentSideCart: Bool = false
@@ -29,7 +30,7 @@ struct HomeView: View {
                     TabView(selection: $selectedTab){
                         HStack{
                             if selectedTab == .home {
-                                HomeContentView(homeObject: homeObject)
+                                HomeContentView(selectedTab:$selectedTab,homeObject: homeObject)
                             }
                             
                             if selectedTab == .products {
@@ -60,11 +61,17 @@ struct HomeView: View {
                 )
             }
             .overlay(alignment:.bottom) {
-                NavBarView(selectedTab: $selectedTab)
+                NavBarView(selectedTab: $selectedTab, showLogin: $showLogin)
             }
             
-            if(selectedTab == .profile){
-                //LoginView
+            if selectedTab == .profile {
+                if showLogin == true {
+                    LoginView(loginAction: {
+                        showLogin.toggle()
+                        selectedTab = .home
+                    })
+                        .transition(.opacity)
+                }
             }
             
             //SideMenu()

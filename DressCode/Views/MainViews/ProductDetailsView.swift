@@ -51,7 +51,7 @@ struct ProductDetailsView: View {
                                 Button {
                                     
                                 } label: {
-                                    Image("Add")
+                                    Image("Plus")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: 25, height: 25)
@@ -89,25 +89,32 @@ struct ProductDetailsView: View {
                             .padding(.top, 10)
                         
                         VStack {
-                            HStack(alignment: .top) {
-                                ProductItemView(product: prod2, products: products)
-                                ProductItemView(product: prod3, products: products)
+                            
+                            let similarProds = products.filter { $0.category == product.category && $0.title != product.title }
+                            
+                            ForEach(0..<similarProds.count / 2 + similarProds.count % 2) { index in
+                                let startIndex = index * 2
+                                let endIndex = min(startIndex + 2, similarProds.count)
+                                HStack {
+                                    ForEach(startIndex..<endIndex) { productIndex in
+                                        ProductItemView(product: similarProds[productIndex], products: products)
+                                    }
+                                }
                             }
                             
-                            HStack(alignment: .top) {
-                                ProductItemView(product: prod4, products: products)
-                                ProductItemView(product: prod1, products: products)
-                            }
-                            
-                            HStack(alignment: .center, spacing: 8) {
-                                Text("Explore More")
-                                    .font(tenorSans(20))
-                                    .multilineTextAlignment(.center)
-                                    .foregroundColor(.black)
+                            Button{
                                 
-                                Image(systemName: "arrow.forward")
-                                    .frame(width: 18, height: 18)
-                                
+                            }label: {
+                                HStack(alignment: .center, spacing: 8) {
+                                    Text("Explore More")
+                                        .font(tenorSans(20))
+                                        .multilineTextAlignment(.center)
+                                        .foregroundColor(.black)
+                                    
+                                    Image(systemName: "arrow.forward")
+                                        .frame(width: 18, height: 18)
+                                    
+                                }
                             }
                             .padding(12)
                             
