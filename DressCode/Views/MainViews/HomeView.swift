@@ -14,7 +14,7 @@ struct HomeView: View {
     @State var presentSideMenu: Bool = false
     @State var presentSideCart: Bool = false
     
-    @State var prodObj: HomeDataModel = homeObj
+    @State var homeObject: HomeDataModel = homeObj
     
     init() {
         UITabBar.appearance().isHidden = true
@@ -29,7 +29,7 @@ struct HomeView: View {
                     TabView(selection: $selectedTab){
                         HStack{
                             if selectedTab == .home {
-                                HomeContentView(prodObj: prodObj)
+                                HomeContentView(homeObject: homeObject)
                             }
                             
                             if selectedTab == .products {

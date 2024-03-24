@@ -10,19 +10,21 @@ import SwiftUI
 struct ContentView: View {
     @State private var showSplash = true
     var body: some View {
-        ZStack {
-            if showSplash {
-                SplashView()
-                    .transition(.opacity)
-                    
-            } else {
-                HomeView()
+        NavigationStack{
+            ZStack {
+                if showSplash {
+                    SplashView()
+                        .transition(.opacity)
+                        
+                } else {
+                    HomeView()
+                }
             }
-        }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                withAnimation(.easeInOut(duration: 0.5)) {
-                    showSplash = false
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    withAnimation(.easeInOut(duration: 0.5)) {
+                        showSplash = false
+                    }
                 }
             }
         }

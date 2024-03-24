@@ -14,5 +14,5 @@ struct ProductModel {
     var images: [String]
     var category: String
     var gender: String
-    
+    var isTrending: Bool
 }

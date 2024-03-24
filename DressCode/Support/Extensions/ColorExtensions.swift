@@ -11,5 +11,9 @@ extension Color {
     static var Default: Color {
         Color("Default")
     }
+    
+    static var BodyGrey: Color {
+        Color("Body")
+    }
 }
 
