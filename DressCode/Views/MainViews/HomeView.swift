@@ -77,6 +77,7 @@ struct HomeView: View {
             SideMenu()
             SideCart()
         }
+        .navigationBarHidden(true)
     }
     
     @ViewBuilder

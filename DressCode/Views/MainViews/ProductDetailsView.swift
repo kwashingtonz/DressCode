@@ -49,7 +49,7 @@ struct ProductDetailsView: View {
                                     .foregroundColor(.black)
                                 Spacer()
                                 Button {
-                                    
+                                    //add action to cart add
                                 } label: {
                                     Image("Plus")
                                         .resizable()
@@ -104,18 +104,18 @@ struct ProductDetailsView: View {
                                 }
                             }
                             
-                            Button{
-                                NavigationUtil.popToRootView()
+                            NavigationLink{
+                                HomeView()
                             }label: {
                                 HStack(alignment: .center, spacing: 8) {
                                     Text("Explore More")
                                         .font(tenorSans(20))
                                         .multilineTextAlignment(.center)
                                         .foregroundColor(.black)
-                                    
+
                                     Image(systemName: "arrow.forward")
                                         .frame(width: 18, height: 18)
-                                    
+
                                 }
                             }
                             .padding(12)

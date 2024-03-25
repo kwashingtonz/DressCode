@@ -58,7 +58,7 @@ struct SideCartViewContents: View {
             }
            
             NavigationLink {
-                CheckoutView()
+                LoginView(loginAction: {}, isCheckout: true)
             } label: {
                 HStack {
                     Image("Cart")
@@ -90,6 +90,7 @@ struct SideCartViewContents: View {
         VStack {
             HStack {
                 Button {
+                    print(presentSideMenu.hashValue)
                     presentSideMenu.toggle()
                 } label: {
                     Image("Close")
@@ -165,7 +166,7 @@ struct SideCartViewContents: View {
     }
     
     func updateCartValue() {
-        print("\(totalPrice)")
+//        print("\(totalPrice)")
         var value: Int = 0
         for item in cartItems {
             value += (item.count * item.product.price)

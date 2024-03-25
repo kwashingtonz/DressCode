@@ -10,7 +10,12 @@ import SwiftUI
 struct LoginView: View {
     
     var loginAction: ButtonAction
+    var isCheckout: Bool = false
+    
     @StateObject var loginVM : LoginViewModel = LoginViewModel()
+    
+    @Environment(\.presentationMode)
+    var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         ZStack {
@@ -19,7 +24,11 @@ struct LoginView: View {
                 .overlay(alignment: .top){
                     HStack {
                         Button {
-                            loginAction()
+                            if isCheckout {
+                                presentationMode.wrappedValue.dismiss()
+                            }else{
+                                loginAction()
+                            }
                         } label: {
                             Image("Close")
                                 .resizable()
@@ -46,18 +55,33 @@ struct LoginView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .font(tenorSans(20))
                 
-                Button{
-//                    self.loginVM.validateUser()
-                   loginAction()
-                }label: {
-                    Text("Login")
-                        .padding()
-                        .frame(maxWidth: 360, maxHeight: 40)
-                        .background(Color.black)
-                        .foregroundColor(.white)
-                        .cornerRadius(20)
+                
+                if isCheckout{
+                    NavigationLink{
+                        CheckoutView()
+                    }label: {
+                        Text("Login")
+                            .padding()
+                            .frame(maxWidth: 360, maxHeight: 40)
+                            .background(Color.black)
+                            .foregroundColor(.white)
+                            .cornerRadius(20)
+                    }
+                    .padding(.top, 20)
+                }else{
+                    Button{
+                        //  self.loginVM.validateUser()
+                        loginAction()
+                    }label: {
+                        Text("Login")
+                            .padding()
+                            .frame(maxWidth: 360, maxHeight: 40)
+                            .background(Color.black)
+                            .foregroundColor(.white)
+                            .cornerRadius(20)
+                    }
+                    .padding(.top, 20)
                 }
-                .padding(.top, 20)
                 
                 Button{
                     
@@ -71,7 +95,9 @@ struct LoginView: View {
             .padding(.bottom, 100)
                 
         }
+        .navigationBarBackButtonHidden(true)
     }
+        
 }
 
 #Preview {

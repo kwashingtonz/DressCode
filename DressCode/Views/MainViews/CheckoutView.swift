@@ -51,9 +51,7 @@ struct CheckoutView: View {
                 ScrollView(.vertical) {
                     ForEach(0..<cartItems.count, id: \.self) { i in
                         if cartItems[i].count > 0 {
-                            CartItemView( item: cartItems[i], isCheckout: true ) {
-                                updateCartValue()
-                            }
+                            CartItemView( item: cartItems[i], isCheckout: true ) {}
                         }
                     }
                 }.padding([.leading, .trailing], 20)
@@ -195,14 +193,33 @@ struct CheckoutView: View {
                     .multilineTextAlignment(.center)
                     .foregroundColor(Color.Label)
                 
-                Button {
-                    NavigationUtil.popToRootView()
-                } label: {
+//                Button {
+//                    NavigationUtil.popToRootView()
+//                } label: {
+//                    HStack(alignment: .center, spacing: 10) {
+//                        Text("BACK TO HOME")
+//                            .font(tenorSans(16))
+//                            .multilineTextAlignment(.center)
+//                            .foregroundColor(.black)
+//                    }
+//                    .padding(.horizontal, 16)
+//                    .padding(.vertical, 12)
+//                    .overlay {
+//                        Rectangle()
+//                            .inset(by: 0.5)
+//                            .stroke(Color.black.opacity(0.5), lineWidth: 1)
+//                    }
+//                    .padding([.top, .bottom], 20)
+//                }
+                
+                NavigationLink{
+                    HomeView()
+                }label:{
                     HStack(alignment: .center, spacing: 10) {
-                        Text("BACK TO HOME")
-                            .font(tenorSans(16))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.black)
+                    Text("BACK TO HOME")
+                        .font(tenorSans(16))
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.black)
                     }
                     .padding(.horizontal, 16)
                     .padding(.vertical, 12)
@@ -213,8 +230,6 @@ struct CheckoutView: View {
                     }
                     .padding([.top, .bottom], 20)
                 }
-
-                
                 
             }
             .frame(maxWidth: .infinity)
@@ -225,7 +240,6 @@ struct CheckoutView: View {
     }
     
     func updateCartValue() {
-        print("\(totalPrice)")
         var value: Int = 0
         for item in cartItems {
             value += (item.count * item.product.price)
