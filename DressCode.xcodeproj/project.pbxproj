@@ -40,6 +40,7 @@
 		7E8C916F2BB0A2BA001B8164 /* SideCartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C916E2BB0A2BA001B8164 /* SideCartView.swift */; };
 		7E8C91712BB0A38F001B8164 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C91702BB0A38F001B8164 /* CheckoutView.swift */; };
 		7E8C91732BB0A3C3001B8164 /* CartItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C91722BB0A3C3001B8164 /* CartItemView.swift */; };
+		7E8C91772BB1308E001B8164 /* ProductsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C91762BB1308E001B8164 /* ProductsContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		7E8C916E2BB0A2BA001B8164 /* SideCartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideCartView.swift; sourceTree = "<group>"; };
 		7E8C91702BB0A38F001B8164 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
 		7E8C91722BB0A3C3001B8164 /* CartItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartItemView.swift; sourceTree = "<group>"; };
+		7E8C91762BB1308E001B8164 /* ProductsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 				7E8C91682BB092FE001B8164 /* SideView.swift */,
 				7E8C916C2BB095A0001B8164 /* GenderView.swift */,
 				7E8C91722BB0A3C3001B8164 /* CartItemView.swift */,
+				7E8C91762BB1308E001B8164 /* ProductsContentView.swift */,
 			);
 			path = SupportingViews;
 			sourceTree = "<group>";
@@ -312,6 +315,7 @@
 				7E8C91632BB06988001B8164 /* LoginView.swift in Sources */,
 				7E5C7D8B2BB005860023C7F6 /* HomeContentView.swift in Sources */,
 				7E5C7D952BB00C890023C7F6 /* GenderCategoryModel.swift in Sources */,
+				7E8C91772BB1308E001B8164 /* ProductsContentView.swift in Sources */,
 				7E5C7D992BB040550023C7F6 /* ProductItemView.swift in Sources */,
 				7E8C916F2BB0A2BA001B8164 /* SideCartView.swift in Sources */,
 				7E5C7DA12BB04F810023C7F6 /* ProductDetailsView.swift in Sources */,
