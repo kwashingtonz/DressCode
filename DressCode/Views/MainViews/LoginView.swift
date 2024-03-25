@@ -37,7 +37,7 @@ struct LoginView: View {
                         .frame(width: 34, height: 34)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 30)
-                        .padding(.top, -25)
+                        .padding(.top, 10)
                     }
                 }
             VStack {

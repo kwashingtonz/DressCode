@@ -48,20 +48,27 @@ struct ProductDetailsView: View {
                                     .multilineTextAlignment(.leading)
                                     .foregroundColor(.black)
                                 Spacer()
+                               
+                            }
+                            
+                            HStack {
+                                Text("$\(product.price)")
+                                    .font(tenorSans(28))
+                                    .multilineTextAlignment(.leading)
+                                    .foregroundColor(.Default)
+                                
+                                Spacer()
+                                
                                 Button {
                                     //add action to cart add
                                 } label: {
                                     Image("Plus")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .frame(width: 25, height: 25)
+                                        .frame(width: 30, height: 30)
                                 }
                             }
                             
-                            Text("$\(product.price)")
-                                .font(tenorSans(28))
-                                .multilineTextAlignment(.leading)
-                                .foregroundColor(.Default)
                         }
                         .frame(maxWidth: .infinity)
                         .padding([.leading, .trailing], 20)

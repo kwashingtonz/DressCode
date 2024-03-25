@@ -63,6 +63,7 @@ struct HomeView: View {
             .overlay(alignment:.bottom) {
                 NavBarView(selectedTab: $selectedTab, showLogin: $showLogin)
             }
+            .ignoresSafeArea(.keyboard)
             
             if selectedTab == .profile {
                 if showLogin == true {
