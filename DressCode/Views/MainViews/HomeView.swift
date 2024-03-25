@@ -34,7 +34,7 @@ struct HomeView: View {
                             }
                             
                             if selectedTab == .products {
-                                ProductsContentView(products: homeObject.products)
+                                ProductsContentView(homeObject: homeObject, products: homeObject.products)
                             }
                         }
                         .tag(selectedTab)
