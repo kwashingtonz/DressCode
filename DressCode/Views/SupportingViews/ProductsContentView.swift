@@ -12,6 +12,9 @@ struct ProductsContentView: View {
     var homeObject: HomeDataModel
     var products: [ProductModel]
     @State var searchText: String = ""
+    @State var selectedGender: Int = 0
+    @State var selectedType: Int = 0
+    @State var selectedSort: Int = 0
     
     private let adaptiveColumns = [GridItem(.adaptive(minimum: 150))]
     
@@ -36,10 +39,24 @@ struct ProductsContentView: View {
                 HStack{
                     Menu {
                         Button{
-                            
+                            selectedGender = 0;
                         }label: {
-                            Text("Hi")
+                            Text("Any")
+                            if selectedGender == 0 {
+                                Image(systemName: "checkmark")
+                            }
                         }
+                        ForEach(0..<homeObject.genderCategories.count, id: \.self) { i in
+                            Button{
+                                selectedGender = homeObject.genderCategories[i].id
+                            }label: {
+                                Text(homeObject.genderCategories[i].name)
+                                if selectedGender == homeObject.genderCategories[i].id {
+                                    Image(systemName: "checkmark")
+                                }
+                            }
+                        }
+                        
                     }label: {
                         Text("Gender")
                             .font(tenorSans(16))
@@ -52,9 +69,23 @@ struct ProductsContentView: View {
                     
                     Menu {
                         Button{
-                            
+                            selectedType = 0
                         }label: {
-                            Text("Hi")
+                            Text("Any")
+                            if selectedType == 0 {
+                                Image(systemName: "checkmark")
+                            }
+
+                        }
+                        ForEach(0..<homeObject.categories.count, id: \.self) { i in
+                            Button{
+                                selectedType = homeObject.categories[i].id
+                            }label: {
+                                Text(homeObject.categories[i].name)
+                                if selectedType == homeObject.categories[i].id {
+                                    Image(systemName: "checkmark")
+                                }
+                            }
                         }
                     }label: {
                         Text("Type")
@@ -68,9 +99,20 @@ struct ProductsContentView: View {
                     
                     Menu {
                         Button{
-                            
+                            selectedSort = 0
                         }label: {
-                            Text("Hi")
+                            Text("Price Lowest to Highest")
+                            if selectedSort == 0 {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                        Button{
+                            selectedSort = 1
+                        }label: {
+                            Text("Price Highest to Lowest")
+                            if selectedSort == 1 {
+                                Image(systemName: "checkmark")
+                            }
                         }
                     }label: {
                         Image("Sort")

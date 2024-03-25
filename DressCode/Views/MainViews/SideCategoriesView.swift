@@ -34,7 +34,7 @@ struct SideCategoriesViewContents: View {
     var categories : [CategoryModel]
     var genderCategories : [GenderCategoryModel]
     
-    @State private var selectedCategory: Int = 0
+    @State private var selectedCategory: Int = 1
     
     var body: some View {
         HStack {
@@ -53,18 +53,13 @@ struct SideCategoriesViewContents: View {
                     
                     HStack(spacing: 10) {
                         
-                        GenderView(isSelected: selectedCategory == 0, title: "WOMEN")
-                            .onTapGesture {
-                                selectedCategory = 0
-                            }
-                        GenderView(isSelected: selectedCategory == 1, title: "MEN")
-                            .onTapGesture {
-                                selectedCategory = 1
-                            }
-                        GenderView(isSelected: selectedCategory == 2, title: "KIDS")
-                            .onTapGesture {
-                                selectedCategory = 2
-                            }
+                        ForEach(0..<genderCategories.count, id: \.self) { i in
+                            GenderView(isSelected: selectedCategory == genderCategories[i].id, title: genderCategories[i].name)
+                                .onTapGesture {
+                                    selectedCategory = genderCategories[i].id
+                                }
+                        }
+                        
                     }
                     .frame(maxWidth: .infinity)
                     
