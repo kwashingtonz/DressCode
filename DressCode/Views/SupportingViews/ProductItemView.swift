@@ -11,11 +11,12 @@ import Kingfisher
 struct ProductItemView: View {
     var product: ProductModel
     var products: [ProductModel]
+    @Binding var cartItems: [CartItemModel]
     
     var body: some View {
         
         NavigationLink {
-            ProductDetailsView(product: product, products: products)
+            ProductDetailsView(product: product, products: products, cartItems: $cartItems)
         } label: {
             VStack {
                 KFImage(URL(string: product.images[0]))
@@ -44,5 +45,5 @@ struct ProductItemView: View {
 }
 
 #Preview {
-    ProductItemView(product: prod2, products: searchObj)
+    ProductItemView(product: prod2, products: searchObj, cartItems: .constant(cartItms))
 }

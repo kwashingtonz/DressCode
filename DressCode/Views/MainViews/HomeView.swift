@@ -17,6 +17,9 @@ struct HomeView: View {
     
     @State var homeObject: HomeDataModel = homeObj
     
+    @State var selectedGenderCategory: Int = 1
+    @State var selectedType: Int = 0
+    
     init() {
         UITabBar.appearance().isHidden = true
     }
@@ -30,11 +33,11 @@ struct HomeView: View {
                     TabView(selection: $selectedTab){
                         HStack{
                             if selectedTab == .home {
-                                HomeContentView(selectedTab:$selectedTab,homeObject: homeObject)
+                                HomeContentView(selectedTab:$selectedTab,homeObject: $homeObject)
                             }
                             
                             if selectedTab == .products {
-                                ProductsContentView(homeObject: homeObject, products: homeObject.products)
+                                ProductsContentView(homeObject: $homeObject, products: homeObject.products, selectedGender: $selectedGenderCategory, selectedType: $selectedType)
                             }
                         }
                         .tag(selectedTab)
@@ -67,7 +70,7 @@ struct HomeView: View {
             
             if selectedTab == .profile {
                 if showLogin == true {
-                    LoginView(loginAction: {
+                    LoginView(cartItems: $homeObject.cartItems, loginAction: {
                         showLogin.toggle()
                         selectedTab = .home
                     })
@@ -83,12 +86,12 @@ struct HomeView: View {
     
     @ViewBuilder
     private func SideMenu() -> some View {
-        SideView(isShowing: $presentSideMenu, content: AnyView(SideCategoriesViewContents(presentSideMenu: $presentSideMenu, categories: homeObject.categories, genderCategories: homeObject.genderCategories)), direction: .leading)
+        SideView(isShowing: $presentSideMenu, content: AnyView(SideCategoriesViewContents(presentSideMenu: $presentSideMenu, selectedGenderCategory: $selectedGenderCategory, selectedType: $selectedType, selectedTab: $selectedTab,categories: homeObject.categories, genderCategories: homeObject.genderCategories)), direction: .leading)
     }
 
     @ViewBuilder
     private func SideCart() -> some View {
-        SideView(isShowing: $presentSideCart, content: AnyView(SideCartViewContents(presentSideMenu: $presentSideCart)), direction: .trailing)
+        SideView(isShowing: $presentSideCart, content: AnyView(SideCartViewContents(presentSideMenu: $presentSideCart, cartItems: $homeObject.cartItems)), direction: .trailing)
     }
 }
 

@@ -11,13 +11,12 @@ import Kingfisher
 struct HomeContentView: View {
     
     @Binding var selectedTab: Tab
-    
-    var homeObject : HomeDataModel
+    @Binding var homeObject : HomeDataModel
     
     var body: some View {
         ScrollView(.vertical) {
             HeroImageView(imgUrl: homeObject.heroImg, with: $selectedTab)
-            NewArrivalView(products: homeObject.products, with: $selectedTab)
+            NewArrivalView(products: homeObject.products, with: $selectedTab, binding2: $homeObject.cartItems)
             Image("Brands")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -29,7 +28,7 @@ struct HomeContentView: View {
 }
 
 #Preview {
-    HomeContentView(selectedTab: .constant(.home), homeObject: homeObj)
+    HomeContentView(selectedTab: .constant(.home), homeObject: .constant(homeObj))
 }
 
 @ViewBuilder
@@ -62,7 +61,7 @@ private func HeroImageView(imgUrl : String, with binding:Binding<Tab>) -> some V
 }
 
 @ViewBuilder
-private func NewArrivalView(products :[ProductModel], with binding:Binding<Tab>) -> some View {
+private func NewArrivalView(products :[ProductModel], with binding:Binding<Tab>, binding2:Binding<[CartItemModel]>) -> some View {
     
     let trendingProds = products.filter { $0.isTrending }
     
@@ -86,7 +85,7 @@ private func NewArrivalView(products :[ProductModel], with binding:Binding<Tab>)
             let endIndex = min(startIndex + 2, trendingProds.count)
             HStack {
                 ForEach(startIndex..<endIndex) { productIndex in
-                    ProductItemView(product: trendingProds[productIndex], products: products)
+                    ProductItemView(product: trendingProds[productIndex], products: products, cartItems: binding2)
                 }
             }
         }

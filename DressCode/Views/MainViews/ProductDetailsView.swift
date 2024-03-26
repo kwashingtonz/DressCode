@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+import AlertToast
 
 struct ProductDetailsView: View {
     
@@ -15,9 +16,11 @@ struct ProductDetailsView: View {
     
     @State var presentSideMenu = false
     @State var presentSideCart = false
+    @State private var showToast = false
     
     var product: ProductModel
     var products: [ProductModel]
+    @Binding var cartItems: [CartItemModel]
     
     var body: some View {
         ZStack {
@@ -60,7 +63,12 @@ struct ProductDetailsView: View {
                                 Spacer()
                                 
                                 Button {
-                                    //add action to cart add
+                                    if let crtItmIndex = cartItems.firstIndex(where: { $0.product.title == product.title }) {
+                                        $cartItems[crtItmIndex].count.wrappedValue += 1
+                                          } else {
+                                              $cartItems.wrappedValue.append(.init(product: product, count: 1))
+                                          }
+                                    self.showToast = true
                                 } label: {
                                     Image("Plus")
                                         .resizable()
@@ -106,7 +114,8 @@ struct ProductDetailsView: View {
                                 let endIndex = min(startIndex + 2, similarProds.count)
                                 HStack {
                                     ForEach(startIndex..<endIndex) { productIndex in
-                                        ProductItemView(product: similarProds[productIndex], products: products)
+                                        ProductItemView(product: similarProds[productIndex], products: products, cartItems: $cartItems
+                                        )
                                     }
                                 }
                             }
@@ -156,15 +165,18 @@ struct ProductDetailsView: View {
         }
         .navigationBarHidden(true)
         .ignoresSafeArea(edges: .bottom)
+        .toast(isPresenting: $showToast, duration: 2){
+            AlertToast(displayMode: .alert, type: .regular, title: "Added to cart")
+        }
     }
     
     @ViewBuilder
     private func SideCart() -> some View {
-        SideView(isShowing: $presentSideCart, content: AnyView(SideCartViewContents(presentSideMenu: $presentSideCart)), direction: .trailing)
+        SideView(isShowing: $presentSideCart, content: AnyView(SideCartViewContents(presentSideMenu: $presentSideCart, cartItems: $cartItems)), direction: .trailing)
     }
     
 }
 
 #Preview {
-    ProductDetailsView(product: prod1, products: searchObj)
+    ProductDetailsView(product: prod1, products: searchObj, cartItems: .constant(cartItms))
 }

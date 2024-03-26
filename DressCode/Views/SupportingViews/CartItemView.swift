@@ -10,7 +10,7 @@ import Kingfisher
 
 struct CartItemView: View {
     
-    @State var item: CartItemModel
+    @Binding var item: CartItemModel
     var isCheckout: Bool = false
     var onCartCountValueChanged: () -> ()
     
@@ -37,9 +37,9 @@ struct CartItemView: View {
                         
                         HStack(spacing: 20) {
                             Button {
-                                item.count -= 1
+                                $item.count.wrappedValue -= 1
                                 if item.count < 0 {
-                                    item.count = 0
+                                    $item.count.wrappedValue = 0
                                 }
                                 
                                 onCartCountValueChanged()
@@ -62,7 +62,7 @@ struct CartItemView: View {
                                 .foregroundColor(.black)
                             
                             Button {
-                                item.count += 1
+                                $item.count.wrappedValue += 1
                                 onCartCountValueChanged()
                             } label: {
                                 Circle()
@@ -98,7 +98,7 @@ struct CartItemView: View {
 }
 
 #Preview {
-    CartItemView(item: .init(product: prod3, count: 1)){
+    CartItemView(item: .constant(.init(product: prod3, count: 1))){
         
     }
 }

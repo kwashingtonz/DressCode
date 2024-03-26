@@ -20,8 +20,8 @@ var gen1: GenderCategoryModel = .init(id: 1, name: "MEN")
 var gen2: GenderCategoryModel = .init(id: 2, name: "WOMEN")
 var gen3: GenderCategoryModel = .init(id: 3, name: "KIDS")
 
-var homeObj : HomeDataModel = .init(heroImg:"https://i.postimg.cc/13H30ZqZ/temp-Imagep-Lv4-VY.avif", products: [prod1, prod2, prod3, prod4], categories: [cat1, cat2, cat3],genderCategories: [gen1, gen2, gen3] )
+var homeObj : HomeDataModel = .init(heroImg:"https://i.postimg.cc/13H30ZqZ/temp-Imagep-Lv4-VY.avif", products: [prod1, prod2, prod3, prod4], categories: [cat1, cat2, cat3],genderCategories: [gen1, gen2, gen3], cartItems: [])
 
 var searchObj : [ProductModel] = [prod1, prod2, prod3, prod4]
 
-var cartItems: [CartItemModel] = [.init(product: prod1, count: 1), .init(product: prod2, count: 2), .init(product: prod3, count: 1)]
+var cartItms: [CartItemModel] = [.init(product: prod1, count: 1), .init(product: prod2, count: 2), .init(product: prod3, count: 1)]

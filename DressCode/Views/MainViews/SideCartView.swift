@@ -11,6 +11,7 @@ import SwiftUI
 
 struct SideCartViewTemp: View {
     @State var presentSideMenu = true
+    @State var cartItems: [CartItemModel] = cartItms
     
     var body: some View {
         ZStack {
@@ -20,7 +21,7 @@ struct SideCartViewTemp: View {
     
     @ViewBuilder
     private func SideCartMenu() -> some View {
-        SideView(isShowing: $presentSideMenu, content: AnyView(SideCartViewContents(presentSideMenu: $presentSideMenu)), direction: .trailing)
+        SideView(isShowing: $presentSideMenu, content: AnyView(SideCartViewContents(presentSideMenu: $presentSideMenu, cartItems: $cartItems)), direction: .trailing)
     }
     
 }
@@ -31,6 +32,7 @@ struct SideCartViewTemp: View {
 
 struct SideCartViewContents: View {
     @Binding var presentSideMenu: Bool
+    @Binding var cartItems: [CartItemModel]
     @State private var totalPrice: Int = 0
     
     var body: some View {
@@ -58,7 +60,7 @@ struct SideCartViewContents: View {
             }
            
             NavigationLink {
-                LoginView(loginAction: {}, isCheckout: true)
+                LoginView(cartItems: $cartItems ,loginAction: {}, isCheckout: true)
             } label: {
                 HStack {
                     Image("Cart")
@@ -80,7 +82,7 @@ struct SideCartViewContents: View {
         }
         .padding(.top, 60)
         .onAppear{
-            updateCartValue()
+            updateCartValue(items: cartItems)
         }
         
     }
@@ -125,10 +127,9 @@ struct SideCartViewContents: View {
             VStack {
                 ScrollView(.vertical) {
                     ForEach(0..<cartItems.count, id: \.self) { i in
-                        //Checks item count of the product.
                         if cartItems[i].count > 0 {
-                            CartItemView(item: cartItems[i]) {
-                                updateCartValue()
+                            CartItemView(item: $cartItems[i]) {
+                                updateCartValue(items:cartItems)
                             }
                         }
                     }
@@ -165,10 +166,9 @@ struct SideCartViewContents: View {
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
-    func updateCartValue() {
-//        print("\(totalPrice)")
+    func updateCartValue(items: [CartItemModel]) {
         var value: Int = 0
-        for item in cartItems {
+        for item in items {
             value += (item.count * item.product.price)
         }
         totalPrice = value

@@ -9,11 +9,11 @@ import SwiftUI
 
 struct ProductsContentView: View {
     
-    var homeObject: HomeDataModel
+    @Binding var homeObject: HomeDataModel
     var products: [ProductModel]
     @State var searchText: String = ""
-    @State var selectedGender: Int = 0
-    @State var selectedType: Int = 0
+    @Binding var selectedGender: Int
+    @Binding var selectedType: Int
     @State var selectedSort: Int = 0
     
     private let adaptiveColumns = [GridItem(.adaptive(minimum: 150))]
@@ -129,7 +129,7 @@ struct ProductsContentView: View {
                             if products.count > 0 {
                                 LazyVGrid(columns: adaptiveColumns) {
                                     ForEach(0..<products.count, id: \.self) { i in
-                                        ProductItemView(product: products[i], products: products)
+                                        ProductItemView(product: products[i], products: products, cartItems: $homeObject.cartItems)
                                     }
                                     
                                 }
@@ -154,5 +154,5 @@ struct ProductsContentView: View {
 }
 
 #Preview {
-    ProductsContentView(homeObject: homeObj, products: [prod1, prod2, prod3, prod4])
+    ProductsContentView(homeObject: .constant(homeObj), products: [prod1, prod2, prod3, prod4], selectedGender: .constant(0), selectedType: .constant(0))
 }

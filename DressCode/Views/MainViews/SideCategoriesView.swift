@@ -10,6 +10,9 @@ import SwiftUI
 struct SideCategoriesViewTemp: View {
     
     @State var presentSideMenu = true
+    @State var selectedGenderCategory = 1
+    @State var selectedType = 0
+    @State var selectedTab : Tab = .products
     
     var categories : [CategoryModel]
     var genderCategories : [GenderCategoryModel]
@@ -23,18 +26,21 @@ struct SideCategoriesViewTemp: View {
     @ViewBuilder
     private func SideCategoriesView(categories: [CategoryModel], genderCategories: [GenderCategoryModel]) -> some View {
         
-        SideView(isShowing: $presentSideMenu, content: AnyView(SideCategoriesViewContents(presentSideMenu: $presentSideMenu, categories: categories, genderCategories: genderCategories)), direction: .leading)
+        SideView(isShowing: $presentSideMenu, content: AnyView(SideCategoriesViewContents(presentSideMenu: $presentSideMenu, selectedGenderCategory: $selectedGenderCategory, selectedType: $selectedType, selectedTab: $selectedTab,categories: categories, genderCategories: genderCategories)), direction: .leading)
         
     }
 }
 
 struct SideCategoriesViewContents: View {
     @Binding var presentSideMenu: Bool
+    @Binding var selectedGenderCategory: Int
+    @Binding var selectedType: Int
+    @Binding var selectedTab: Tab
     
     var categories : [CategoryModel]
     var genderCategories : [GenderCategoryModel]
     
-    @State private var selectedCategory: Int = 1
+    
     
     var body: some View {
         HStack {
@@ -54,9 +60,9 @@ struct SideCategoriesViewContents: View {
                     HStack(spacing: 10) {
                         
                         ForEach(0..<genderCategories.count, id: \.self) { i in
-                            GenderView(isSelected: selectedCategory == genderCategories[i].id, title: genderCategories[i].name)
+                            GenderView(isSelected: selectedGenderCategory == genderCategories[i].id, title: genderCategories[i].name)
                                 .onTapGesture {
-                                    selectedCategory = genderCategories[i].id
+                                    selectedGenderCategory = genderCategories[i].id
                                 }
                         }
                         
@@ -64,7 +70,11 @@ struct SideCategoriesViewContents: View {
                     .frame(maxWidth: .infinity)
                     
                     ForEach(0..<categories.count, id: \.self) { i in
-                        CategoryItem(title: categories[i].name){}
+                        CategoryItem(title: categories[i].name, action: {
+                            selectedType = categories[i].id
+                            selectedTab = .products
+                            presentSideMenu.toggle()
+                        })
                     }
                     
                     Spacer()
@@ -77,7 +87,7 @@ struct SideCategoriesViewContents: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 24, height: 24)
-                            Text("(786) XXX-8616")
+                            Text("(011) 0123 456")
                                 .font(tenorSans(16))
                                 .foregroundColor(.black)
                             
@@ -95,7 +105,7 @@ struct SideCategoriesViewContents: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width: 24, height: 24)
-                            Text("Store locator")
+                            Text("01, Negombo Road, Colombo")
                                 .font(tenorSans(16))
                                 .foregroundColor(.black)
                             
@@ -144,7 +154,7 @@ struct SideCategoriesViewContents: View {
     }
     
     @ViewBuilder
-    func CategoryItem(title: String, action: @escaping (() -> Void)) -> some View {
+    func CategoryItem(title: String, action: @escaping (ButtonAction)) -> some View {
         Button {
             action()
         } label: {

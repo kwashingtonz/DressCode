@@ -12,4 +12,5 @@ struct HomeDataModel {
     var products : [ProductModel]
     var categories : [CategoryModel]
     var genderCategories : [GenderCategoryModel]
+    var cartItems : [CartItemModel]
 }

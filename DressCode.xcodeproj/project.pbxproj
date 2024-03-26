@@ -30,6 +30,7 @@
 		7E5C7D9D2BB04E6C0023C7F6 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C7D9C2BB04E6C0023C7F6 /* HomeViewModel.swift */; };
 		7E5C7D9F2BB04E830023C7F6 /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C7D9E2BB04E830023C7F6 /* ProductsViewModel.swift */; };
 		7E5C7DA12BB04F810023C7F6 /* ProductDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5C7DA02BB04F810023C7F6 /* ProductDetailsView.swift */; };
+		7E7524F52BB31E20005EFDEF /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 7E7524F42BB31E20005EFDEF /* AlertToast */; };
 		7E8C91632BB06988001B8164 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C91622BB06988001B8164 /* LoginView.swift */; };
 		7E8C91652BB075B8001B8164 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C91642BB075B8001B8164 /* LoginViewModel.swift */; };
 		7E8C91672BB08EF2001B8164 /* NavigationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8C91662BB08EF2001B8164 /* NavigationUtil.swift */; };
@@ -88,6 +89,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E5C7D852BAFF2C50023C7F6 /* Kingfisher in Frameworks */,
+				7E7524F52BB31E20005EFDEF /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +244,7 @@
 			name = DressCode;
 			packageProductDependencies = (
 				7E5C7D842BAFF2C50023C7F6 /* Kingfisher */,
+				7E7524F42BB31E20005EFDEF /* AlertToast */,
 			);
 			productName = DressCode;
 			productReference = 7E5C7D582BAFD3F60023C7F6 /* DressCode.app */;
@@ -273,6 +276,7 @@
 			mainGroup = 7E5C7D4F2BAFD3F60023C7F6;
 			packageReferences = (
 				7E5C7D832BAFF2C50023C7F6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				7E7524F32BB31E20005EFDEF /* XCRemoteSwiftPackageReference "AlertToast" */,
 			);
 			productRefGroup = 7E5C7D592BAFD3F60023C7F6 /* Products */;
 			projectDirPath = "";
@@ -548,6 +552,14 @@
 				minimumVersion = 7.11.0;
 			};
 		};
+		7E7524F32BB31E20005EFDEF /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.9;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -555,6 +567,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7E5C7D832BAFF2C50023C7F6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		7E7524F42BB31E20005EFDEF /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7E7524F32BB31E20005EFDEF /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

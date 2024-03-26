@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CheckoutView: View {
     
+    @Binding var cartItems: [CartItemModel]
+    
     @Environment(\.presentationMode)
     var presentationMode: Binding<PresentationMode>
     
@@ -24,7 +26,7 @@ struct CheckoutView: View {
             }
         }
         .onAppear{
-            updateCartValue()
+            updateCartValue(items: cartItems)
         }
         .ignoresSafeArea(edges: .bottom)
         .navigationBarHidden(true)
@@ -51,7 +53,7 @@ struct CheckoutView: View {
                 ScrollView(.vertical) {
                     ForEach(0..<cartItems.count, id: \.self) { i in
                         if cartItems[i].count > 0 {
-                            CartItemView( item: cartItems[i], isCheckout: true ) {}
+                            CartItemView( item: $cartItems[i], isCheckout: true ) {}
                         }
                     }
                 }.padding([.leading, .trailing], 20)
@@ -239,9 +241,9 @@ struct CheckoutView: View {
         }.frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
-    func updateCartValue() {
+    func updateCartValue(items: [CartItemModel]) {
         var value: Int = 0
-        for item in cartItems {
+        for item in items {
             value += (item.count * item.product.price)
         }
         totalPrice = value
@@ -249,6 +251,6 @@ struct CheckoutView: View {
 }
 
 #Preview {
-    CheckoutView()
+    CheckoutView(cartItems: .constant(cartItms))
 }
 

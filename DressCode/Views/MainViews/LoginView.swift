@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     
+    @Binding var cartItems: [CartItemModel]
     var loginAction: ButtonAction
     var isCheckout: Bool = false
     
@@ -58,7 +59,7 @@ struct LoginView: View {
                 
                 if isCheckout{
                     NavigationLink{
-                        CheckoutView()
+                        CheckoutView(cartItems: $cartItems)
                     }label: {
                         Text("Login")
                             .padding()
@@ -101,5 +102,5 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView(loginAction: {})
+    LoginView(cartItems: .constant(cartItms), loginAction: {})
 }
