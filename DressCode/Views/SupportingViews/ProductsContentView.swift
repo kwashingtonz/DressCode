@@ -39,7 +39,7 @@ struct ProductsContentView: View {
                 HStack{
                     Menu {
                         Button{
-                            selectedGender = 0;
+                            $selectedGender.wrappedValue = 0;
                         }label: {
                             Text("Any")
                             if selectedGender == 0 {
@@ -48,7 +48,7 @@ struct ProductsContentView: View {
                         }
                         ForEach(0..<homeObject.genderCategories.count, id: \.self) { i in
                             Button{
-                                selectedGender = homeObject.genderCategories[i].id
+                                $selectedGender.wrappedValue = homeObject.genderCategories[i].id
                             }label: {
                                 Text(homeObject.genderCategories[i].name)
                                 if selectedGender == homeObject.genderCategories[i].id {
@@ -58,18 +58,29 @@ struct ProductsContentView: View {
                         }
                         
                     }label: {
-                        Text("Gender")
-                            .font(tenorSans(16))
-                            .foregroundColor(Color.BodyGrey)
+                        if selectedGender == 0 {
+                            Text("Gender")
+                                .font(tenorSans(16))
+                                .foregroundColor(Color.BodyGrey)
+                        }else{
+                            ForEach(0..<homeObject.genderCategories.count, id: \.self) { i in
+                                if selectedGender == homeObject.genderCategories[i].id {
+                                    Text(homeObject.genderCategories[i].name)
+                                        .font(tenorSans(16))
+                                        .foregroundColor(Color.Default)
+                                }
+                            }
+                        }
+                        
                         Image("Down")
                             .resizable()
                             .scaledToFit().frame(width: 10, height: 10)
                     }
-                    .padding(.trailing, 50)
+                    .padding(.trailing, 30)
                     
                     Menu {
                         Button{
-                            selectedType = 0
+                            $selectedType.wrappedValue = 0
                         }label: {
                             Text("Any")
                             if selectedType == 0 {
@@ -79,7 +90,7 @@ struct ProductsContentView: View {
                         }
                         ForEach(0..<homeObject.categories.count, id: \.self) { i in
                             Button{
-                                selectedType = homeObject.categories[i].id
+                                $selectedType.wrappedValue = homeObject.categories[i].id
                             }label: {
                                 Text(homeObject.categories[i].name)
                                 if selectedType == homeObject.categories[i].id {
@@ -88,14 +99,25 @@ struct ProductsContentView: View {
                             }
                         }
                     }label: {
-                        Text("Type")
-                            .font(tenorSans(16))
-                            .foregroundColor(Color.BodyGrey)
+                        if selectedType == 0 {
+                            Text("Type")
+                                .font(tenorSans(16))
+                                .foregroundColor(Color.BodyGrey)
+                        }else{
+                            ForEach(0..<homeObject.categories.count, id: \.self) { i in
+                                if selectedType == homeObject.categories[i].id {
+                                    Text(homeObject.categories[i].name)
+                                        .font(tenorSans(16))
+                                        .foregroundColor(Color.Default)
+                                }
+                            }
+                        }
                         Image("Down")
                             .resizable()
                             .scaledToFit().frame(width: 10, height: 10)
                     }
-                    .padding(.trailing, 100)
+                    
+                    Spacer()
                     
                     Menu {
                         Button{
@@ -121,7 +143,9 @@ struct ProductsContentView: View {
                     }
                     .frame(width: 24, height: 24)
                 }
-                .padding(.bottom, 10)
+                .padding(.bottom,10)
+                .padding(.top, -5)
+                .padding([.trailing,.leading], 20)
                 
                 ScrollView(.vertical) {
                     VStack {
@@ -129,7 +153,7 @@ struct ProductsContentView: View {
                             if products.count > 0 {
                                 LazyVGrid(columns: adaptiveColumns) {
                                     ForEach(0..<products.count, id: \.self) { i in
-                                        ProductItemView(product: products[i], products: products, cartItems: $homeObject.cartItems)
+                                        ProductItemView(product: products[i], products: products, cartItems: $homeObject.cartItems, homeObjt: $homeObject)
                                     }
                                     
                                 }
@@ -149,7 +173,6 @@ struct ProductsContentView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding(.top, 10)
     }
 }
 

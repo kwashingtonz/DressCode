@@ -15,12 +15,18 @@ struct HomeView: View {
     @State var presentSideMenu: Bool = false
     @State var presentSideCart: Bool = false
     
-    @State var homeObject: HomeDataModel = homeObj
+    @State var homeObject: HomeDataModel
     
-    @State var selectedGenderCategory: Int = 1
+    @State var selectedGenderCategory: Int = 0
     @State var selectedType: Int = 0
     
     init() {
+        UITabBar.appearance().isHidden = true
+        self.homeObject = homeObj
+    }
+    
+    init(homeObjt: HomeDataModel){
+        self.homeObject = homeObjt
         UITabBar.appearance().isHidden = true
     }
     

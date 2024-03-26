@@ -16,7 +16,7 @@ struct HomeContentView: View {
     var body: some View {
         ScrollView(.vertical) {
             HeroImageView(imgUrl: homeObject.heroImg, with: $selectedTab)
-            NewArrivalView(products: homeObject.products, with: $selectedTab, binding2: $homeObject.cartItems)
+            NewArrivalView(products: homeObject.products, with: $selectedTab, binding2: $homeObject.cartItems, binding3: $homeObject)
             Image("Brands")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
@@ -61,7 +61,7 @@ private func HeroImageView(imgUrl : String, with binding:Binding<Tab>) -> some V
 }
 
 @ViewBuilder
-private func NewArrivalView(products :[ProductModel], with binding:Binding<Tab>, binding2:Binding<[CartItemModel]>) -> some View {
+private func NewArrivalView(products :[ProductModel], with binding:Binding<Tab>, binding2:Binding<[CartItemModel]>, binding3:Binding<HomeDataModel>) -> some View {
     
     let trendingProds = products.filter { $0.isTrending }
     
@@ -85,7 +85,7 @@ private func NewArrivalView(products :[ProductModel], with binding:Binding<Tab>,
             let endIndex = min(startIndex + 2, trendingProds.count)
             HStack {
                 ForEach(startIndex..<endIndex) { productIndex in
-                    ProductItemView(product: trendingProds[productIndex], products: products, cartItems: binding2)
+                    ProductItemView(product: trendingProds[productIndex], products: products, cartItems: binding2, homeObjt: binding3)
                 }
             }
         }

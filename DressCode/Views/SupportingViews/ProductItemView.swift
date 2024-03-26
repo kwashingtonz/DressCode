@@ -12,11 +12,12 @@ struct ProductItemView: View {
     var product: ProductModel
     var products: [ProductModel]
     @Binding var cartItems: [CartItemModel]
+    @Binding var homeObjt: HomeDataModel
     
     var body: some View {
         
         NavigationLink {
-            ProductDetailsView(product: product, products: products, cartItems: $cartItems)
+            ProductDetailsView(product: product, products: products, cartItems: $cartItems, homeObjt: $homeObjt)
         } label: {
             VStack {
                 KFImage(URL(string: product.images[0]))
@@ -45,5 +46,5 @@ struct ProductItemView: View {
 }
 
 #Preview {
-    ProductItemView(product: prod2, products: searchObj, cartItems: .constant(cartItms))
+    ProductItemView(product: prod2, products: searchObj, cartItems: .constant(cartItms), homeObjt: .constant(homeObj))
 }

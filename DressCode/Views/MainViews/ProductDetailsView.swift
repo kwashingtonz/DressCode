@@ -21,6 +21,7 @@ struct ProductDetailsView: View {
     var product: ProductModel
     var products: [ProductModel]
     @Binding var cartItems: [CartItemModel]
+    @Binding var homeObjt: HomeDataModel
     
     var body: some View {
         ZStack {
@@ -114,14 +115,14 @@ struct ProductDetailsView: View {
                                 let endIndex = min(startIndex + 2, similarProds.count)
                                 HStack {
                                     ForEach(startIndex..<endIndex) { productIndex in
-                                        ProductItemView(product: similarProds[productIndex], products: products, cartItems: $cartItems
+                                        ProductItemView(product: similarProds[productIndex], products: products, cartItems: $cartItems, homeObjt: $homeObjt
                                         )
                                     }
                                 }
                             }
                             
                             NavigationLink{
-                                HomeView()
+                                HomeView(homeObjt: homeObjt)
                             }label: {
                                 HStack(alignment: .center, spacing: 8) {
                                     Text("Explore More")
@@ -178,5 +179,5 @@ struct ProductDetailsView: View {
 }
 
 #Preview {
-    ProductDetailsView(product: prod1, products: searchObj, cartItems: .constant(cartItms))
+    ProductDetailsView(product: prod1, products: searchObj, cartItems: .constant(cartItms), homeObjt: .constant(homeObj))
 }

@@ -34,6 +34,7 @@ struct SideCartViewContents: View {
     @Binding var presentSideMenu: Bool
     @Binding var cartItems: [CartItemModel]
     @State private var totalPrice: Int = 0
+    @State private var activeCheckout: Bool = false
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -59,30 +60,52 @@ struct SideCartViewContents: View {
                 EmptyCartView()
             }
            
-            NavigationLink {
-                LoginView(cartItems: $cartItems ,loginAction: {}, isCheckout: true)
-            } label: {
-                HStack {
-                    Image("Cart")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 20, height: 20)
-                        .colorInvert()
-                    Text("Checkout")
-                        .font(tenorSans(16))
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.white)
+            if activeCheckout == true {
+                NavigationLink {
+                    LoginView(cartItems: $cartItems ,loginAction: {}, isCheckout: true)
+                } label: {
+                    HStack {
+                        Image("Cart")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 20, height: 20)
+                            .colorInvert()
+                        Text("Checkout")
+                            .font(tenorSans(16))
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.white)
+                    }
+                    .padding(.bottom, 15)
+                    .frame(height: 80)
+                    .frame(maxWidth: .infinity)
+                    .background(.black)
                 }
-                .padding(.bottom, 15)
-                .frame(height: 80)
-                .frame(maxWidth: .infinity)
-                .background(.black)
+            } else {
+                Button {
+                    
+                } label: {
+                    HStack {
+                        Image("Cart")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 20, height: 20)
+                            .colorInvert()
+                        Text("Checkout")
+                            .font(tenorSans(16))
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.white)
+                    }
+                    .padding(.bottom, 15)
+                    .frame(height: 80)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.Placeholder)
+                }.disabled(!activeCheckout)
             }
-
         }
         .padding(.top, 60)
         .onAppear{
             updateCartValue(items: cartItems)
+            updateActive(items: cartItems)
         }
         
     }
@@ -130,6 +153,7 @@ struct SideCartViewContents: View {
                         if cartItems[i].count > 0 {
                             CartItemView(item: $cartItems[i]) {
                                 updateCartValue(items:cartItems)
+                                updateActive(items: cartItems)
                             }
                         }
                     }
@@ -172,6 +196,16 @@ struct SideCartViewContents: View {
             value += (item.count * item.product.price)
         }
         totalPrice = value
+    }
+    
+    func updateActive(items: [CartItemModel]) {
+        var value: Bool = false
+        for item in items {
+            if item.count > 0 {
+                value = true
+            }
+        }
+        activeCheckout = value
     }
     
     

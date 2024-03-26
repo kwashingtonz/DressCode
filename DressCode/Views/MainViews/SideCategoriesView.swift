@@ -59,19 +59,30 @@ struct SideCategoriesViewContents: View {
                     
                     HStack(spacing: 10) {
                         
+                        GenderView(isSelected: selectedGenderCategory == 0, title: "ANY")
+                            .onTapGesture {
+                                $selectedGenderCategory.wrappedValue = 0
+                            }
+                        
                         ForEach(0..<genderCategories.count, id: \.self) { i in
                             GenderView(isSelected: selectedGenderCategory == genderCategories[i].id, title: genderCategories[i].name)
                                 .onTapGesture {
-                                    selectedGenderCategory = genderCategories[i].id
+                                    $selectedGenderCategory.wrappedValue = genderCategories[i].id
                                 }
                         }
                         
                     }
                     .frame(maxWidth: .infinity)
                     
+                    CategoryItem(title: "All", action: {
+                        $selectedType.wrappedValue = 0
+                        selectedTab = .products
+                        presentSideMenu.toggle()
+                    })
+                    
                     ForEach(0..<categories.count, id: \.self) { i in
                         CategoryItem(title: categories[i].name, action: {
-                            selectedType = categories[i].id
+                            $selectedType.wrappedValue = categories[i].id
                             selectedTab = .products
                             presentSideMenu.toggle()
                         })
