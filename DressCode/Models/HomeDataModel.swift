@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct HomeDataModel {
+struct HomeDataModel : Decodable {
     var heroImg :String
     var products : [ProductModel]
     var categories : [CategoryModel]

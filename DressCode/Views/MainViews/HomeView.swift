@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct HomeView: View {
     
@@ -20,74 +21,90 @@ struct HomeView: View {
     @State var selectedGenderCategory: Int = 0
     @State var selectedType: Int = 0
     
+    @State private var isBack: Bool
+    
+    @StateObject var homeVM : HomeViewModel = HomeViewModel()
+    
     init() {
         UITabBar.appearance().isHidden = true
-        self.homeObject = homeObj
+        self.homeObject = nullHomeObj
+        self.isBack = false
     }
     
-    init(homeObjt: HomeDataModel){
+    init(homeObjt: HomeDataModel, isBack: Bool){
         self.homeObject = homeObjt
+        self.isBack = isBack
         UITabBar.appearance().isHidden = true
     }
     
     var body: some View {
         
         ZStack {
-            Color.white.edgesIgnoringSafeArea(.all)
-            ZStack {
-                VStack(spacing: 0) {
-                    TabView(selection: $selectedTab){
-                        HStack{
-                            if selectedTab == .home {
-                                HomeContentView(selectedTab:$selectedTab,homeObject: $homeObject)
+            if homeVM.isLoading == true {
+                ZStack {
+                    Color.Default.edgesIgnoringSafeArea(.all)
+                }
+                .toast(isPresenting: $homeVM.isLoading, duration: 2){
+                    AlertToast(displayMode: .alert, type: .loading, title: "Loading")
+                }
+            } else {
+                ZStack {
+                    VStack(spacing: 0) {
+                        TabView(selection: $selectedTab){
+                            HStack{
+                                if selectedTab == .home {
+                                    HomeContentView(selectedTab:$selectedTab,homeObject: $homeObject)
+                                }
+                                
+                                if selectedTab == .products {
+                                    ProductsContentView(homeObject: $homeObject, products: homeObject.products, selectedGender: $selectedGenderCategory, selectedType: $selectedType)
+                                }
                             }
-                            
-                            if selectedTab == .products {
-                                ProductsContentView(homeObject: $homeObject, products: homeObject.products, selectedGender: $selectedGenderCategory, selectedType: $selectedType)
-                            }
+                            .tag(selectedTab)
                         }
-                        .tag(selectedTab)
+                        
                     }
-                    
+                    .padding(.top, 56)
                 }
-                .padding(.top, 56)
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .overlay(alignment: .top) {
-                HeaderView(
-                    showMenuButton: true,
-                    showCartButton: true,
-                    menuAction:{
-                        presentSideMenu.toggle()
-                    },
-                    cartAction: {
-                        presentSideCart.toggle()
-                    },
-                    closeAction: {
-                    },
-                    backAction: {
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .overlay(alignment: .top) {
+                    HeaderView(
+                        showMenuButton: true,
+                        showCartButton: true,
+                        menuAction:{
+                            presentSideMenu.toggle()
+                        },
+                        cartAction: {
+                            presentSideCart.toggle()
+                        },
+                        closeAction: {
+                        },
+                        backAction: {
+                        }
+                    )
+                }
+                .overlay(alignment:.bottom) {
+                    NavBarView(selectedTab: $selectedTab, showLogin: $showLogin)
+                }
+                .ignoresSafeArea(.keyboard)
+                
+                if selectedTab == .profile {
+                    if showLogin == true {
+                        LoginView(cartItems: $homeObject.cartItems, showLogin: $showLogin, selectedTab: $selectedTab)
+                            .transition(.opacity)
                     }
-                )
-            }
-            .overlay(alignment:.bottom) {
-                NavBarView(selectedTab: $selectedTab, showLogin: $showLogin)
-            }
-            .ignoresSafeArea(.keyboard)
-            
-            if selectedTab == .profile {
-                if showLogin == true {
-                    LoginView(cartItems: $homeObject.cartItems, loginAction: {
-                        showLogin.toggle()
-                        selectedTab = .home
-                    })
-                        .transition(.opacity)
                 }
+                
+                SideMenu()
+                SideCart()
             }
-            
-            SideMenu()
-            SideCart()
         }
         .navigationBarHidden(true)
+        .onAppear{
+            if isBack == false {
+                self.homeVM.fetchData(hObj: $homeObject)
+            }
+        }
     }
     
     @ViewBuilder

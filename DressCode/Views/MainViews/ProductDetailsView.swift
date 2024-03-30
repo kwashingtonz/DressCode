@@ -56,7 +56,7 @@ struct ProductDetailsView: View {
                             }
                             
                             HStack {
-                                Text("$\(product.price)")
+                                Text("Rs.\(product.price)")
                                     .font(tenorSans(28))
                                     .multilineTextAlignment(.leading)
                                     .foregroundColor(.Default)
@@ -122,7 +122,7 @@ struct ProductDetailsView: View {
                             }
                             
                             NavigationLink{
-                                HomeView(homeObjt: homeObjt)
+                                HomeView(homeObjt: homeObjt, isBack: true)
                             }label: {
                                 HStack(alignment: .center, spacing: 8) {
                                     Text("Explore More")

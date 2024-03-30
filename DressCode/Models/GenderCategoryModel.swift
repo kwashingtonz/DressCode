@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GenderCategoryModel {
+struct GenderCategoryModel : Decodable {
     var id: Int
     var name: String
 }

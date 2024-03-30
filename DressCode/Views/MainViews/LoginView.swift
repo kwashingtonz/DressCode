@@ -6,11 +6,13 @@
 //
 
 import SwiftUI
+import AlertToast
 
 struct LoginView: View {
     
     @Binding var cartItems: [CartItemModel]
-    var loginAction: ButtonAction
+    @Binding var showLogin: Bool
+    @Binding var selectedTab: Tab
     var isCheckout: Bool = false
     
     @StateObject var loginVM : LoginViewModel = LoginViewModel()
@@ -28,7 +30,8 @@ struct LoginView: View {
                             if isCheckout {
                                 presentationMode.wrappedValue.dismiss()
                             }else{
-                                loginAction()
+                                showLogin.toggle()
+                                selectedTab = .home
                             }
                         } label: {
                             Image("Close")
@@ -58,9 +61,10 @@ struct LoginView: View {
                 
                 
                 if isCheckout{
-                    NavigationLink{
-                        CheckoutView(cartItems: $cartItems)
-                    }label: {
+                    
+                    Button(action: {
+                        self.loginVM.checkoutLogin()
+                    }) {
                         Text("Login")
                             .padding()
                             .frame(maxWidth: 360, maxHeight: 40)
@@ -69,10 +73,26 @@ struct LoginView: View {
                             .cornerRadius(20)
                     }
                     .padding(.top, 20)
+                    
+                    NavigationLink("", isActive: $loginVM.success){
+                        CheckoutView(cartItems: $cartItems)
+                    }
+                
+//                    NavigationLink{
+//                        CheckoutView(cartItems: $cartItems)
+//                    }label: {
+//                        Text("Login")
+//                            .padding()
+//                            .frame(maxWidth: 360, maxHeight: 40)
+//                            .background(Color.black)
+//                            .foregroundColor(.white)
+//                            .cornerRadius(20)
+//                    }
+                    
+                    
                 }else{
                     Button{
-                        //  self.loginVM.validateUser()
-                        loginAction()
+                        self.loginVM.homeLogin(showLogin: $showLogin, selectedTab: $selectedTab)
                     }label: {
                         Text("Login")
                             .padding()
@@ -97,10 +117,16 @@ struct LoginView: View {
                 
         }
         .navigationBarBackButtonHidden(true)
+        .toast(isPresenting: $loginVM.showError, duration: 2){
+            AlertToast(displayMode: .banner(.pop), type: .regular, title: loginVM.errorMessage)
+        }
+        .toast(isPresenting: $loginVM.success, duration: 2){
+            AlertToast(displayMode: .alert, type: .loading, title: "Loading")
+        }
     }
         
 }
 
 #Preview {
-    LoginView(cartItems: .constant(cartItms), loginAction: {})
+    LoginView(cartItems: .constant(cartItms), showLogin: .constant(true), selectedTab: .constant(.home), isCheckout: true)
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CategoryModel {
+struct CategoryModel : Decodable {
     var id: Int
     var name: String
 }

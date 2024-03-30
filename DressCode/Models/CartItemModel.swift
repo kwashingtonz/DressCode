@@ -7,7 +7,7 @@
 
 import Foundation
 
-class CartItemModel {
+class CartItemModel : Decodable {
     var product: ProductModel
     var count: Int = 0
     

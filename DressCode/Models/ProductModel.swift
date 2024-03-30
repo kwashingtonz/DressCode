@@ -7,12 +7,12 @@
 
 import Foundation
 
-struct ProductModel {
+struct ProductModel : Decodable {
     var title: String
     var price: Int
     var description: String
     var images: [String]
-    var category: String
-    var gender: String
+    var category: Int
+    var gender: Int
     var isTrending: Bool
 }
