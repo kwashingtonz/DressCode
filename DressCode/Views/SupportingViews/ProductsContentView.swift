@@ -170,6 +170,7 @@ struct ProductsContentView: View {
                                 .toast(isPresenting: $prodVM.isLoading, duration: 2){
                                     AlertToast(displayMode: .alert, type: .loading, title: "Loading")
                                 }
+                                .frame(height: 600)
                             }else{
                                 if prdcts.count > 0 {
                                     LazyVGrid(columns: adaptiveColumns) {
