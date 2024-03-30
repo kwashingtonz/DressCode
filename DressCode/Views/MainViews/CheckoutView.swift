@@ -195,25 +195,6 @@ struct CheckoutView: View {
                     .multilineTextAlignment(.center)
                     .foregroundColor(Color.Label)
                 
-//                Button {
-//                    NavigationUtil.popToRootView()
-//                } label: {
-//                    HStack(alignment: .center, spacing: 10) {
-//                        Text("BACK TO HOME")
-//                            .font(tenorSans(16))
-//                            .multilineTextAlignment(.center)
-//                            .foregroundColor(.black)
-//                    }
-//                    .padding(.horizontal, 16)
-//                    .padding(.vertical, 12)
-//                    .overlay {
-//                        Rectangle()
-//                            .inset(by: 0.5)
-//                            .stroke(Color.black.opacity(0.5), lineWidth: 1)
-//                    }
-//                    .padding([.top, .bottom], 20)
-//                }
-                
                 NavigationLink{
                     HomeView()
                 }label:{

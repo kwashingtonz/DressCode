@@ -41,7 +41,7 @@ struct LoginView: View {
                         .frame(width: 34, height: 34)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.leading, 30)
-                        .padding(.top, 10)
+                        .padding(.top, 65)
                     }
                 }
             VStack {
@@ -77,18 +77,6 @@ struct LoginView: View {
                     NavigationLink("", isActive: $loginVM.success){
                         CheckoutView(cartItems: $cartItems)
                     }
-                
-//                    NavigationLink{
-//                        CheckoutView(cartItems: $cartItems)
-//                    }label: {
-//                        Text("Login")
-//                            .padding()
-//                            .frame(maxWidth: 360, maxHeight: 40)
-//                            .background(Color.black)
-//                            .foregroundColor(.white)
-//                            .cornerRadius(20)
-//                    }
-                    
                     
                 }else{
                     Button{
@@ -116,6 +104,7 @@ struct LoginView: View {
             .padding(.bottom, 100)
                 
         }
+        .ignoresSafeArea(.all)
         .navigationBarBackButtonHidden(true)
         .toast(isPresenting: $loginVM.showError, duration: 2){
             AlertToast(displayMode: .banner(.pop), type: .regular, title: loginVM.errorMessage)

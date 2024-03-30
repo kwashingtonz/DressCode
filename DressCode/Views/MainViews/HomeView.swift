@@ -21,19 +21,19 @@ struct HomeView: View {
     @State var selectedGenderCategory: Int = 0
     @State var selectedType: Int = 0
     
-    @State private var isBack: Bool
+    @State private var isFirstTime: Bool
     
     @StateObject var homeVM : HomeViewModel = HomeViewModel()
     
     init() {
         UITabBar.appearance().isHidden = true
         self.homeObject = nullHomeObj
-        self.isBack = false
+        self.isFirstTime = true
     }
     
-    init(homeObjt: HomeDataModel, isBack: Bool){
+    init(homeObjt: HomeDataModel, isFirstTime: Bool){
         self.homeObject = homeObjt
-        self.isBack = isBack
+        self.isFirstTime = isFirstTime
         UITabBar.appearance().isHidden = true
     }
     
@@ -101,7 +101,7 @@ struct HomeView: View {
         }
         .navigationBarHidden(true)
         .onAppear{
-            if isBack == false {
+            if isFirstTime == true {
                 self.homeVM.fetchData(hObj: $homeObject)
             }
         }

@@ -122,7 +122,7 @@ struct ProductDetailsView: View {
                             }
                             
                             NavigationLink{
-                                HomeView(homeObjt: homeObjt, isBack: true)
+                                HomeView(homeObjt: homeObjt, isFirstTime: false)
                             }label: {
                                 HStack(alignment: .center, spacing: 8) {
                                     Text("Explore More")
@@ -146,16 +146,15 @@ struct ProductDetailsView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .overlay(alignment: .top) {
                 HeaderView(
-                    showCloseButton: true,
+                    showCloseNavButton: true,
                     showCartButton: true,
+                    homeObjt: homeObjt,
                     menuAction:{
-                        
                     },
                     cartAction: {
                         presentSideCart.toggle()
                     },
                     closeAction: {
-                        presentationMode.wrappedValue.dismiss()
                     },
                     backAction: {
                     }

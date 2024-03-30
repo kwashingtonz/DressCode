@@ -10,7 +10,6 @@ import SwiftUI
 
 class HomeViewModel : ObservableObject {
     
-    @Published var homeObjt: HomeDataModel = nullHomeObj
     @Published var isLoading = false
    
     func fetchData(hObj: Binding<HomeDataModel>) {
@@ -37,7 +36,6 @@ class HomeViewModel : ObservableObject {
                 if resp.status {
                     DispatchQueue.main.async {
                         if case let .homeModel(homeDataModel) = resp.extra {
-                            self.homeObjt = homeDataModel
                             hObj.wrappedValue = homeDataModel
                         }
                     }

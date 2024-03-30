@@ -80,12 +80,14 @@ private func NewArrivalView(products :[ProductModel], with binding:Binding<Tab>,
     
     VStack {
         
-        ForEach(0..<trendingProds.count / 2 + trendingProds.count % 2) { index in
-            let startIndex = index * 2
-            let endIndex = min(startIndex + 2, trendingProds.count)
-            HStack {
-                ForEach(startIndex..<endIndex) { productIndex in
-                    ProductItemView(product: trendingProds[productIndex], products: products, cartItems: binding2, homeObjt: binding3)
+        if trendingProds.count > 0 {
+            ForEach(0..<trendingProds.count / 2 + trendingProds.count % 2) { index in
+                let startIndex = index * 2
+                let endIndex = min(startIndex + 2, trendingProds.count)
+                HStack {
+                    ForEach(startIndex..<endIndex) { productIndex in
+                        ProductItemView(product: trendingProds[productIndex], products: products, cartItems: binding2, homeObjt: binding3)
+                    }
                 }
             }
         }

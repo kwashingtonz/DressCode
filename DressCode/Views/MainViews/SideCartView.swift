@@ -63,6 +63,7 @@ struct SideCartViewContents: View {
             if activeCheckout == true {
                 NavigationLink {
                     LoginView(cartItems: $cartItems , showLogin: .constant(true), selectedTab: .constant(.home), isCheckout: true)
+                        .ignoresSafeArea(.keyboard)
                 } label: {
                     HStack {
                         Image("Cart")

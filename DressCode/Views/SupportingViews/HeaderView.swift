@@ -11,8 +11,10 @@ struct HeaderView: View {
     
     var showMenuButton: Bool = false
     var showCloseButton: Bool = false
+    var showCloseNavButton: Bool = false
     var showCartButton: Bool = false
     var showBackButton: Bool = false
+    var homeObjt : HomeDataModel = homeObj
     
     var menuAction: ButtonAction
     var cartAction: ButtonAction
@@ -39,6 +41,19 @@ struct HeaderView: View {
                 if showCloseButton == true {
                     Button {
                         closeAction()
+                    } label: {
+                        Image("Close")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                    }
+                    .frame(width: 24, height: 24)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 20)
+                }
+                
+                if showCloseNavButton == true {
+                    NavigationLink {
+                        HomeView(homeObjt: homeObjt, isFirstTime: false)
                     } label: {
                         Image("Close")
                             .resizable()
