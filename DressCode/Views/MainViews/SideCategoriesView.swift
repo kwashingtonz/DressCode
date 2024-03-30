@@ -155,7 +155,7 @@ struct SideCategoriesViewContents: View {
                         Spacer()
                     }
                     .padding(.top, 20)
-                    .padding(.bottom, 20)
+                    .padding(.bottom, 40)
                     
                 }
                 .frame(maxWidth: .infinity)

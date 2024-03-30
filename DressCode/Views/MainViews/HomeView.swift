@@ -69,7 +69,7 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .overlay(alignment: .top) {
                     HeaderView(
-                        showMenuButton: true,
+                        showMenuButton: selectedTab == .products ? false : true,
                         showCartButton: true,
                         menuAction:{
                             presentSideMenu.toggle()

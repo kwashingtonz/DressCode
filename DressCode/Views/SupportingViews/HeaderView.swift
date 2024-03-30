@@ -21,10 +21,9 @@ struct HeaderView: View {
     
     
     var body: some View {
-        ZStack {
+        ZStack(alignment: .center) {
             HStack {
-                
-                if showMenuButton {
+                if showMenuButton == true {
                     Button {
                         menuAction()
                     } label: {
@@ -37,7 +36,7 @@ struct HeaderView: View {
                     .padding(.leading, 20)
                 }
                 
-                if showCloseButton {
+                if showCloseButton == true {
                     Button {
                         closeAction()
                     } label: {
@@ -50,7 +49,7 @@ struct HeaderView: View {
                     .padding(.leading, 20)
                 }
                 
-                if showBackButton {
+                if showBackButton == true {
                     Button {
                         backAction()
                     } label: {
@@ -62,27 +61,20 @@ struct HeaderView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.leading, 20)
                 }
+                Spacer()
+            }
                 
-                Image("Logo")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 84, height: 84)
-                    .padding(
-                                (showCartButton && !showBackButton && !showMenuButton && !showCloseButton) ? .leading
-                                :
-                                (!showCartButton && (showBackButton || showMenuButton || showCloseButton)) ?    .trailing
-                                :
-                                    .leading
-                            ,   (showCartButton && !showBackButton && !showMenuButton && !showCloseButton)
-                                ||
-                                (!showCartButton && (showBackButton || showMenuButton || showCloseButton))
-                                ? 135
-                                : 0
-                            )
+            Image("Logo")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 84, height: 84)
+            
+            HStack {
+                Spacer()
                 
-                if showCartButton {
+                if showCartButton == true {
                     Button {
-                       cartAction()
+                        cartAction()
                     } label: {
                         Image("Cart")
                             .resizable()
